@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className} >
         <Theme appearance="light" accentColor="gray" suppressHydrationWarning>
           <Container className="flex items-center flex-col" pt={"9"}>
-            <Heading align="center">QuickBoard</Heading>
+            <Heading align="center" className="mb-4">QuickBoard</Heading>
             {children}
           </Container>
         </Theme>

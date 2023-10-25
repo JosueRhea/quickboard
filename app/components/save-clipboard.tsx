@@ -21,7 +21,7 @@ export const SaveClipboard = () => {
   };
 
   return (
-    <Flex direction="column" gap="2" mt={"5"} className="max-w-md m-auto">
+    <Flex direction="column" gap="2" className="max-w-md m-auto mt-4">
       <form
         className="w-full flex flex-col gap-y-2"
         ref={ref}
