@@ -1,14 +1,17 @@
-import { getText, saveText } from "@/services/clipboard";
-import { Button, Flex, TextArea, TextFieldInput } from "@radix-ui/themes";
+import { getText } from "@/services/clipboard";
+import { Flex, TextFieldInput } from "@radix-ui/themes";
 import { FormEvent, useRef, useState } from "react";
 import { Copy } from "./copy";
+import { SubmitButton } from "./submit-button";
 
 export const GetClipboard = () => {
   const ref = useRef<HTMLFormElement>(null);
   const [result, setResult] = useState("");
+  const [pending, setPending] = useState(false);
 
   const getClipboard = async (event: FormEvent) => {
     event.preventDefault();
+    setPending(true);
     const formData = Object.fromEntries(
       new FormData(ref.current as HTMLFormElement)
     ) as { id: string };
@@ -18,6 +21,7 @@ export const GetClipboard = () => {
         setResult(res.text);
       }
     }
+    setPending(false);
   };
 
   return (
@@ -28,7 +32,7 @@ export const GetClipboard = () => {
         onSubmit={getClipboard}
       >
         <TextFieldInput name={"id"} placeholder="as3g" />
-        <Button highContrast>Get my text</Button>
+        <SubmitButton pending={pending}>Get my text</SubmitButton>
       </form>
       {result.length > 0 && <Copy text={result} get />}
     </Flex>

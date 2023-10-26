@@ -18,13 +18,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className} >
-        <Theme appearance="light" accentColor="gray" suppressHydrationWarning>
-          <Container className="flex items-center flex-col" pt={"9"}>
-            <Heading align="center" className="mb-4">QuickBoard</Heading>
-            {children}
-          </Container>
-        </Theme>
+      <body className={inter.className}>
+        <div className="w-full h-screen min-h-full flex flex-col bg-[url(/grid--light.svg)] overflow-hidden relative">
+          <Theme appearance="light" accentColor="gray" suppressHydrationWarning>
+            <Container className="flex items-center flex-col" pt={"9"}>
+              <Heading align="center" className="mb-4">
+                QuickBoard
+              </Heading>
+              {children}
+            </Container>
+          </Theme>
+        </div>
       </body>
     </html>
   );

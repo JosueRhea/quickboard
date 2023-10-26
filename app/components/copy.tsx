@@ -1,5 +1,5 @@
 import { CheckCircledIcon, ClipboardCopyIcon } from "@radix-ui/react-icons";
-import { IconButton, Text } from "@radix-ui/themes";
+import { IconButton, Text, Tooltip } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -28,24 +28,32 @@ export const Copy = ({ text, get = false }: Props) => {
       {get ? (
         <div className="relative w-full">
           <Text>{text}</Text>
-          <IconButton className="absolute top-2 right-2" highContrast onClick={!copied ? copy : undefined}>
-            {copied ? (
-              <CheckCircledIcon width="18" height="18" />
-            ) : (
-              <ClipboardCopyIcon width="18" height="18" />
-            )}
-          </IconButton>
+          <Tooltip content="Copy to clipboard">
+            <IconButton
+              className="absolute top-2 right-2"
+              highContrast
+              onClick={!copied ? copy : undefined}
+            >
+              {copied ? (
+                <CheckCircledIcon width="18" height="18" />
+              ) : (
+                <ClipboardCopyIcon width="18" height="18" />
+              )}
+            </IconButton>
+          </Tooltip>
         </div>
       ) : (
         <>
           <Text>{text}</Text>
-          <IconButton highContrast onClick={!copied ? copy : undefined}>
-            {copied ? (
-              <CheckCircledIcon width="18" height="18" />
-            ) : (
-              <ClipboardCopyIcon width="18" height="18" />
-            )}
-          </IconButton>
+          <Tooltip content="Copy to clipboard">
+            <IconButton highContrast onClick={!copied ? copy : undefined}>
+              {copied ? (
+                <CheckCircledIcon width="18" height="18" />
+              ) : (
+                <ClipboardCopyIcon width="18" height="18" />
+              )}
+            </IconButton>
+          </Tooltip>
         </>
       )}
     </div>

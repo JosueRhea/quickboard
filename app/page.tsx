@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <Tabs.Root
       defaultValue="Save"
-      className="w-full flex-1 max-w-md m-auto mt-4"
+      className="w-full flex-1 max-w-md m-auto mt-4 bg-white border"
     >
       <Tabs.List>
         <Tabs.Trigger value="Save">Save</Tabs.Trigger>

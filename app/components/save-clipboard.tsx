@@ -2,13 +2,16 @@ import { saveText } from "@/services/clipboard";
 import { Button, Flex, TextArea } from "@radix-ui/themes";
 import { FormEvent, useRef, useState } from "react";
 import { Copy } from "./copy";
+import { SubmitButton } from "./submit-button";
 
 export const SaveClipboard = () => {
   const [result, setResult] = useState("");
   const ref = useRef<HTMLFormElement>(null);
+  const [pending, setPending] = useState(false);
 
   const saveClipboard = async (event: FormEvent) => {
     event.preventDefault();
+    setPending(true);
     const formData = Object.fromEntries(
       new FormData(ref.current as HTMLFormElement)
     ) as { text: string };
@@ -18,6 +21,7 @@ export const SaveClipboard = () => {
         setResult(res.id);
       }
     }
+    setPending(false);
   };
 
   return (
@@ -28,7 +32,7 @@ export const SaveClipboard = () => {
         onSubmit={saveClipboard}
       >
         <TextArea name="text" placeholder="Paste your text here" />
-        <Button highContrast>Get my code</Button>
+        <SubmitButton pending={pending}>Get my code</SubmitButton>
       </form>
       {result.length > 0 && <Copy text={result} />}
     </Flex>
