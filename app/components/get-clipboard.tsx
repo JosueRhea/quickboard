@@ -1,8 +1,10 @@
 import { getText } from "@/services/clipboard";
-import { Flex, TextFieldInput } from "@radix-ui/themes";
+import { Callout, Card, Flex, Text, TextFieldInput } from "@radix-ui/themes";
 import { FormEvent, useRef, useState } from "react";
 import { Copy } from "./copy";
 import { SubmitButton } from "./submit-button";
+import { toast } from "sonner";
+import { InfoCircledIcon } from "@radix-ui/react-icons";
 
 export const GetClipboard = () => {
   const ref = useRef<HTMLFormElement>(null);
@@ -19,6 +21,8 @@ export const GetClipboard = () => {
       const res = await getText(formData.id);
       if (res?.text) {
         setResult(res.text);
+      } else {
+        toast.error("Not found")
       }
     }
     setPending(false);

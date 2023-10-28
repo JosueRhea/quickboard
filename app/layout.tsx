@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Container, Heading, Theme, ThemePanel } from "@radix-ui/themes";
 import { GeistMono } from "geist/font";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "QuickBoard",
@@ -40,6 +41,9 @@ export default function RootLayout({
             </div>
             {children}
           </Container>
+          <Toaster theme="dark"  toastOptions={{
+            style: {background: "var(--color-panel)"}
+          }} />
         </Theme>
       </body>
     </html>
