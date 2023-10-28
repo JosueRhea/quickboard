@@ -6,7 +6,7 @@ import { GetClipboard } from "./components/get-clipboard";
 
 export default function Home() {
   return (
-    <Card className="w-full flex-1 max-w-md m-auto mt-4 bg-white border">
+    <Card className="w-full flex-1 max-w-md m-auto mt-4 border">
       <Tabs.Root defaultValue="Save">
         <Tabs.List>
           <Tabs.Trigger value="Save">Save</Tabs.Trigger>
