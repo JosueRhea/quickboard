@@ -9,7 +9,7 @@ interface Props {
 
 export const SubmitButton = ({ children, pending }: Props) => {
   return (
-    <Button type="submit" disabled={pending} highContrast>
+    <Button type="submit" disabled={pending}>
       {children}
     </Button>
   );

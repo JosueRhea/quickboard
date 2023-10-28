@@ -1,10 +1,8 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "@radix-ui/themes/styles.css";
+import type { Metadata } from "next";
 import "./globals.css";
 import { Container, Heading, Theme, ThemePanel } from "@radix-ui/themes";
-
-const inter = Inter({ subsets: ["latin"] });
+import { GeistMono } from "geist/font";
 
 export const metadata: Metadata = {
   title: "QuickBoard",
@@ -17,18 +15,32 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <div className="w-full h-screen min-h-full flex flex-col bg-[url(/grid--light.svg)] overflow-hidden relative">
-          <Theme appearance="light" accentColor="gray" suppressHydrationWarning>
-            <Container className="flex items-center flex-col" pt={"9"}>
+    <html
+      lang="en"
+      className={`${GeistMono.variable}`}
+      suppressHydrationWarning
+    >
+      <body>
+        <div className="bg-[url(/grid--light.svg)] overflow-hidden fixed top-0 left-0 right-0 bottom-0 h-full w-full" />
+        <Theme
+          accentColor="indigo"
+          radius="small"
+          scaling="95%"
+          appearance="dark"
+        >
+          <Container className="flex items-center flex-col" pt={"9"}>
+            <div className="w-full h-fit relative m-auto">
+              <div
+                className="w-48 h-48 absolute right-0 left-0 bottom-0 top-36 m-auto block bg-[var(--accent-10)] -z-10"
+                style={{ filter: "blur(120px)" }}
+              />
               <Heading align="center" className="mb-4">
                 QuickBoard
               </Heading>
-              {children}
-            </Container>
-          </Theme>
-        </div>
+            </div>
+            {children}
+          </Container>
+        </Theme>
       </body>
     </html>
   );

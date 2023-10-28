@@ -25,13 +25,13 @@ export const SaveClipboard = () => {
   };
 
   return (
-    <Flex direction="column" gap="2" className="max-w-md m-auto mt-4">
+    <Flex direction="column" gap="2" className="max-w-md m-auto mt-4" justify="center">
       <form
         className="w-full flex flex-col gap-y-2"
         ref={ref}
         onSubmit={saveClipboard}
       >
-        <TextArea name="text" placeholder="Paste your text here" />
+        <TextArea name="text" placeholder="Paste your text here" rows={10} />
         <SubmitButton pending={pending}>Get my code</SubmitButton>
       </form>
       {result.length > 0 && <Copy text={result} />}

@@ -1,5 +1,5 @@
 import { CheckCircledIcon, ClipboardCopyIcon } from "@radix-ui/react-icons";
-import { IconButton, Text, Tooltip } from "@radix-ui/themes";
+import { Flex, IconButton, Text, TextArea, Tooltip } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -27,12 +27,18 @@ export const Copy = ({ text, get = false }: Props) => {
     <div className="flex gap-x-2 w-full justify-center">
       {get ? (
         <div className="relative w-full">
-          <Text>{text}</Text>
+          <TextArea
+            name="text"
+            placeholder="Paste your text here"
+            disabled
+            value={text}
+            rows={10}
+          />
           <Tooltip content="Copy to clipboard">
             <IconButton
-              className="absolute top-2 right-2"
-              highContrast
+              className="absolute bottom-2 right-2"
               onClick={!copied ? copy : undefined}
+              variant="solid"
             >
               {copied ? (
                 <CheckCircledIcon width="18" height="18" />
@@ -43,10 +49,10 @@ export const Copy = ({ text, get = false }: Props) => {
           </Tooltip>
         </div>
       ) : (
-        <>
+        <Flex align="center" gap="2">
           <Text>{text}</Text>
           <Tooltip content="Copy to clipboard">
-            <IconButton highContrast onClick={!copied ? copy : undefined}>
+            <IconButton variant="soft" onClick={!copied ? copy : undefined}>
               {copied ? (
                 <CheckCircledIcon width="18" height="18" />
               ) : (
@@ -54,7 +60,7 @@ export const Copy = ({ text, get = false }: Props) => {
               )}
             </IconButton>
           </Tooltip>
-        </>
+        </Flex>
       )}
     </div>
   );
