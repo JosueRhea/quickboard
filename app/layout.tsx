@@ -1,9 +1,10 @@
 import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
 import "./globals.css";
-import { Container, Heading, Theme, ThemePanel } from "@radix-ui/themes";
+import { Container, Heading, Link, Quote, Text, Theme } from "@radix-ui/themes";
 import { GeistMono } from "geist/font";
 import { Toaster } from "sonner";
+import { HeartFilledIcon, HeartIcon } from "@radix-ui/react-icons";
 
 export const metadata: Metadata = {
   title: "QuickBoard",
@@ -30,20 +31,36 @@ export default function RootLayout({
           appearance="dark"
         >
           <Container className="flex items-center flex-col" pt={"9"}>
-            <div className="w-full h-fit relative m-auto">
+            <div className="w-full h-fit relative m-auto flex flex-col">
               <div
                 className="w-48 h-48 absolute right-0 left-0 bottom-0 top-36 m-auto block bg-[var(--accent-10)] -z-10"
                 style={{ filter: "blur(120px)" }}
               />
-              <Heading align="center" className="mb-4">
+              <Heading align="center" className="mb-4 mx-auto">
                 QuickBoard
               </Heading>
+              <Text align="center" className="mx-auto">
+                Sync your clipboard across your devices.
+              </Text>
             </div>
             {children}
           </Container>
-          <Toaster theme="dark"  toastOptions={{
-            style: {background: "var(--color-panel)"}
-          }} />
+          <div className="w-full text-center flex justify-center items-center gap-x-2">
+            <img src="/me.jpg" className="w-7 h-7 rounded-full" alt="" />
+            <p>
+              Made by{" "}
+              <Link href="https://github.com/josueRhea" target="_blank">
+                <strong>@JosueRhea</strong>
+              </Link>
+            </p>
+            <HeartFilledIcon className="w-4 h-4" />
+          </div>
+          <Toaster
+            theme="dark"
+            toastOptions={{
+              style: { background: "var(--color-panel)" },
+            }}
+          />
         </Theme>
       </body>
     </html>
