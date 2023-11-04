@@ -1,25 +1,20 @@
-"use client";
 import "./radix-theme.css";
-import { Card, Tabs } from "@radix-ui/themes";
-import { SaveClipboard } from "./components/save-clipboard";
-import { GetClipboard } from "./components/get-clipboard";
+import { headers } from "next/headers";
+import { ClipboardTabs } from "./components/tabs";
+import { getText } from "@/services/clipboard";
 
-export default function Home() {
-  return (
-    <Card className="w-full flex-1 max-w-md m-auto mt-4 border">
-      <Tabs.Root defaultValue="Save">
-        <Tabs.List>
-          <Tabs.Trigger value="Save">Save</Tabs.Trigger>
-          <Tabs.Trigger value="Get">Get</Tabs.Trigger>
-        </Tabs.List>
+export default async function Home() {
+  const headersList = headers();
+  const url = headersList.get("x-url");
+  let value = null;
+  try {
+    const searchParams = new URL(url as string).searchParams;
+    const code = searchParams.get("code");
+    const res = await getText(code as string);
+    if (res?.text) {
+      value = res.text;
+    }
+  } catch (error) {}
 
-        <Tabs.Content value="Save">
-          <SaveClipboard />
-        </Tabs.Content>
-        <Tabs.Content value="Get">
-          <GetClipboard />
-        </Tabs.Content>
-      </Tabs.Root>
-    </Card>
-  );
+  return <ClipboardTabs value={value} />;
 }

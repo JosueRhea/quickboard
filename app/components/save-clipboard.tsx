@@ -1,5 +1,5 @@
 import { saveText } from "@/services/clipboard";
-import { Button, Flex, TextArea } from "@radix-ui/themes";
+import { Flex, TextArea } from "@radix-ui/themes";
 import { FormEvent, useRef, useState } from "react";
 import { Copy } from "./copy";
 import { SubmitButton } from "./submit-button";
@@ -25,7 +25,12 @@ export const SaveClipboard = () => {
   };
 
   return (
-    <Flex direction="column" gap="2" className="max-w-md m-auto mt-4" justify="center">
+    <Flex
+      direction="column"
+      gap="2"
+      className="max-w-md m-auto mt-4"
+      justify="center"
+    >
       <form
         className="w-full flex flex-col gap-y-2"
         ref={ref}

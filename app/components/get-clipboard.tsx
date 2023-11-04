@@ -1,14 +1,17 @@
 import { getText } from "@/services/clipboard";
-import { Callout, Card, Flex, Text, TextFieldInput } from "@radix-ui/themes";
+import { Flex, TextFieldInput } from "@radix-ui/themes";
 import { FormEvent, useRef, useState } from "react";
 import { Copy } from "./copy";
 import { SubmitButton } from "./submit-button";
 import { toast } from "sonner";
-import { InfoCircledIcon } from "@radix-ui/react-icons";
 
-export const GetClipboard = () => {
+interface Props {
+  value: string | null;
+}
+
+export const GetClipboard = ({ value }: Props) => {
   const ref = useRef<HTMLFormElement>(null);
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState(value ?? "");
   const [pending, setPending] = useState(false);
 
   const getClipboard = async (event: FormEvent) => {
@@ -22,7 +25,7 @@ export const GetClipboard = () => {
       if (res?.text) {
         setResult(res.text);
       } else {
-        toast.error("Not found")
+        toast.error("Not found");
       }
     }
     setPending(false);
@@ -35,7 +38,10 @@ export const GetClipboard = () => {
         ref={ref}
         onSubmit={getClipboard}
       >
-        <TextFieldInput name={"id"} placeholder="as3g" />
+        <TextFieldInput
+          name={"id"}
+          placeholder="as3g"
+        />
         <SubmitButton pending={pending}>Get my text</SubmitButton>
       </form>
       {result.length > 0 && <Copy text={result} get />}
