@@ -49,7 +49,7 @@ export default function RootLayout({
             <img src="/me.jpg" className="w-7 h-7 rounded-full" alt="" />
             <p>
               Made by{" "}
-              <Link href="https://github.com/josueRhea" target="_blank">
+              <Link href="https://josuerhea.me" target="_blank">
                 <strong>@JosueRhea</strong>
               </Link>
             </p>
