@@ -1,10 +1,10 @@
 import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
 import "./globals.css";
-import { Container, Heading, Link, Quote, Text, Theme } from "@radix-ui/themes";
-import { GeistMono } from "geist/font";
+import { Container, Heading, Link, Text, Theme } from "@radix-ui/themes";
+import { GeistSans } from "geist/font";
 import { Toaster } from "sonner";
-import { HeartFilledIcon, HeartIcon } from "@radix-ui/react-icons";
+import { HeartFilledIcon } from "@radix-ui/react-icons";
 
 export const metadata: Metadata = {
   title: "QuickBoard",
@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistMono.variable}`}
+      className={`${GeistSans.variable}`}
       suppressHydrationWarning
     >
       <body>
